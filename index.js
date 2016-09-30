@@ -1,13 +1,34 @@
 var express = require('express');
 var  app = express();
 
+app.get('/write', function(req, res) {
+  var page = "<form method='post' action='/posts'>" +
+             "<input type='text' name='title' />" +
+             "<input type='submit' />" +
+             "</form>"
+  res.send(page)
+})
 app.get('/posts', function(req, res) {
+  res.send('GET /posts')
   console.log('GET /posts')
 })
 app.get('/posts/:id', function(req, res) {
+  res.send('GET /posts/:id')
   console.log('GET /posts/:id')
 })
-回调
+app.put('/posts/:id', function(req, res) {
+  res.send('PUT /posts/:id')
+  console.log('PUT /posts/:id')
+})
+app.post('/posts/', function(req, res) {
+  res.send('The Blog title is' + req.query.title)
+  console.log('POST /posts')
+})
+app.delete('/posts/:id', function(req, res) {
+  res.send('DELETE /posts/:id')
+  console.log('DELETE /posts/:id')
+})
+
 app.listen(3000, function() {
   console.log('running on port 3000')
 })
