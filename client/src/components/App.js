@@ -5,24 +5,25 @@ export default class App extends Component {
   constructor() {
     super();
     this.state={
-      posts: "all posts"
+      posts: []
     };
   }
   componentWillMount() {
-    console.log('hello will mount');
-    axios.get('http://localhost:3000/posts', function(res){
+    console.log('hello will axios');
+    //  Promise
+    axios.get('http://localhost:3000/posts').then(res => {
+      console.log('axios');
       this.setState({
-        posts: res.posts
-      })
-    })
-    // 再此处发 Ajax 请求，
-    // 请求服务器端的 json 数据
+        posts: res.data.posts
+      });
+      console.log(this.state.posts);
+    });
   }
   render() {
-
+    let posts = this.state.posts.map( (item,i) => <p key={i}>{item.title}</p>)
     return(
       <div>
-        { this.state.posts }
+        {posts}
       </div>
     );
   }

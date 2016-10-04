@@ -1,34 +1,50 @@
 var express = require('express');
 var  app = express();
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
-//*关闭同源策略，开放cors//*
+
+// 关闭同源策略
 var cors = require('cors');
 app.use(cors());
 
-app.get('/write', function(req, res) {
+
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/digicity-express-api');
+
+
+var Post = require('./models/post');
+
+var db = mongoose.connection;
+db.on('error', console.log);
+db.once('open', function() {
+  console.log('success!')
+});
+app.get('/', function(req, res) {
+  // res.redirect('https://www.baidu.com');
   var page = "<form method='post' action='/posts'>" +
              "<input type='text' name='title' />" +
              "<input type='submit' />" +
              "</form>"
   res.send(page)
 })
+
 app.get('/posts', function(req, res) {
-  res.send('GET /posts')
-  console.log('GET /posts')
-})
-app.get('/posts/:id', function(req, res) {
-  res.send('GET /posts/:id')
-  console.log('GET /posts/:id')
-})
-app.put('/posts/:id', function(req, res) {
-  res.send('PUT /posts/:id')
-  console.log('PUT /posts/:id')
+  Post.find().exec(function(err, posts) {
+    res.json({ posts: posts})
+  });
 })
 app.post('/posts/', function(req, res) {
-  res.send('the post title is: ' + req.body.title)
+  // res.send('the post title is: ' + req.body.title)
+  var post = new Post({title: req.body.title});
+  post.save(function(err){
+    if(err) console.log(err);
+    console.log('saved!');
+  })
+  res.redirect('/posts');
 })
 app.listen(3000, function() {
   console.log('running on port 3000')
