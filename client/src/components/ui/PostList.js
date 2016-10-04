@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+
 export default class App extends Component {
   constructor() {
     super();
@@ -20,7 +21,7 @@ export default class App extends Component {
     });
   }
   render() {
-    let posts = this.state.posts.map( (item,i) => <p key={i}>{item.title}</p>)
+    let posts = this.state.posts.map( (item,i) => <p key={i}>第{i+1}条{item.title}</p>)
     return(
       <div>
         {posts}
