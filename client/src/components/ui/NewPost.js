@@ -20,26 +20,24 @@ class NewPost extends Component {
       }
     };
   }
-  newPost(title){
-      axios.post('http://localhost:3000/posts', {title})
-       .then( res => {
-        console.log(res.data.message);
-         this.context.router.push('/');
-       })
-     }
+  newPost(data){
+    axios.post('http://localhost:3000/posts', data)
+    .then( res => {
+      console.log(res.data.message);
+      this.context.router.push('/');
+    })
+  }
   render() {
     const styles = this.getStyles();
     return (
       <div style={styles.content}>
         <div style={styles.title}>写文章</div>
-        <Form newPost={this.newPost.bind(this)}/>
+        <Form newPost={this.newPost.bind(this)} />
       </div>
     );
   }
 }
 NewPost.contextTypes = {
-  router:React.PropTypes.object.isRequired
-}
-
-
+  router: React.PropTypes.object
+};
 export default NewPost;

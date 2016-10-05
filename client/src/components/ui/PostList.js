@@ -38,7 +38,10 @@ export default class PostList extends Component {
         width:'150px',
         height:'50px',
         boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px'
-
+      },
+      con : {
+        height:'10px',
+        width:'10px',
       }
     }
   }
@@ -58,13 +61,15 @@ export default class PostList extends Component {
       return (
         <div style={styles.content} key={post._id}>
           <div style={styles.title}>{post.title}</div>
+          <div >{post.category}</div>
+          <div style={styles.con} >{post.content}</div>
+
         </div>
       )
     }, this.state.posts);
     return(
       <div >
       <Link to='write' style={styles.Link}>写文章</Link>
-      
         { postList }
       </div>
     );

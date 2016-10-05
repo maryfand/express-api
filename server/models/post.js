@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 var PostSchema = new Schema(
   {
     title: String,
-    category:string,
-    content:string
+    category:String,
+    content:String
   },
   {
     timestamps:true

@@ -39,7 +39,11 @@ app.get('/posts', function(req, res) {
 })
 app.post('/posts/', function(req, res) {
   // res.send('the post title is: ' + req.body.title)
-  var post = new Post({title: req.body.title});
+console.log(req.body);
+var post = new Post({
+  title:req.body.title,
+  category:req.body.content
+});
   post.save(function(err){
     if(err) return console.log(err);
     console.log('saved!');
