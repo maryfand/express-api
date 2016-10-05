@@ -61,6 +61,7 @@ export default class PostList extends Component {
       return (
         <div style={styles.content} key={post._id}>
           <div style={styles.title}>{post.title}</div>
+          <Link to={`/post/${post._id}`}>查看</Link>
           <div >{post.category}</div>
           <div style={styles.con} >{post.content}</div>
 
