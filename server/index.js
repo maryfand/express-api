@@ -37,6 +37,9 @@ app.get('/posts', function(req, res) {
     res.json({ posts: posts})
   });
 })
+app.get('/post/:id',function(req,res){
+  res.send(req.params.id)
+})
 app.post('/posts/', function(req, res) {
   // res.send('the post title is: ' + req.body.title)
 console.log(req.body);
