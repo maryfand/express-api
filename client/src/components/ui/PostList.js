@@ -64,6 +64,7 @@ export default class PostList extends Component {
     return(
       <div >
       <Link to='write' style={styles.Link}>写文章</Link>
+      
         { postList }
       </div>
     );

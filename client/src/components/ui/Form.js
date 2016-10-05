@@ -68,10 +68,7 @@ class Form extends Component {
       alert('内容不能为空')
       return
     }
-    axios.post('http://localhost:3000/posts',{title}).then(function(res){
-      console.log(res.data.message);
-      this.context.router.push('/');
-      }.bind(this))
+  this.props.newPost(title);
       //更改路由
   }
   render() {
@@ -89,9 +86,6 @@ class Form extends Component {
       </form>
     );
   }
-}
-Form.contextTypes = {
-  router:React.PropTypes.object.isRequired
 }
 
 export default Radium(Form);
