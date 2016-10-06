@@ -6,6 +6,7 @@ import App from './components/ui/App';
 import PostList from './components/ui/PostList';
 import ShowPost from './components/ui/ShowPost';
 
+
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
