@@ -11,7 +11,7 @@ class ShowPost extends React.Component {
   }
   componentDidMount() {
     let id = this.props.params.id;
-    let address = `http://localhost:3000/post/${id}`;
+    let address = `http://localhost:4000/post/${id}`;
     axios.get(address).then(res => {
       this.setState({
         data: res.data.post,

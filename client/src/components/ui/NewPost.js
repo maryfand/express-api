@@ -21,7 +21,7 @@ class NewPost extends Component {
     };
   }
   newPost(data){
-    axios.post('http://localhost:3000/posts', data)
+    axios.post('http://localhost:4000/posts', data)
     .then( res => {
       console.log(res.data.message);
       this.context.router.push('/');
